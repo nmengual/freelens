@@ -157,6 +157,15 @@ jobs:
           retry_on: any
           command: npm ci
 
+      - name: Use NX cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/.nx
+          key: ${{ matrix.os }}-${{ matrix.arch }}-nx-${{ github.ref_name }}-${{ github.run_id }}
+          restore-keys: |
+            ${{ matrix.os }}-${{ matrix.arch }}-nx-${{ github.ref_name }}-
+            ${{ matrix.os }}-${{ matrix.arch }}-nx-
+
       - name: Rebuild for arch (Linux arm64)
         if: runner.os == 'Linux' && matrix.arch == 'arm64'
         run: npm run rebuild -- -- -a arm64

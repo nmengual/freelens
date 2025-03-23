@@ -122,6 +122,15 @@ jobs:
           restore-keys: |
             ${{ matrix.os }}-${{ matrix.arch }}-playwright-
 
+      - name: Use NX cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/.nx
+          key: ${{ matrix.os }}-${{ matrix.arch }}-nx-${{ github.ref_name }}-${{ github.run_id }}
+          restore-keys: |
+            ${{ matrix.os }}-${{ matrix.arch }}-nx-${{ github.ref_name }}-
+            ${{ matrix.os }}-${{ matrix.arch }}-nx-
+
       - name: Install minikube (Linux)
         if: runner.os == 'Linux'
         uses: manusa/actions-setup-minikube@v2.13.1
