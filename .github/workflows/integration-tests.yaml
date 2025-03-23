@@ -126,10 +126,11 @@ jobs:
       - name: Use NX cache
         uses: actions/cache@v4
         with:
-          path: ${{ env.NX_CACHE_DIR }} 
-          key: ${{ matrix.os }}-${{ matrix.arch }}-nx-${{ github.ref_name }}-${{ github.run_id }}
+          path: ${{ env.NX_CACHE_DIR }}
+          key: ${{ matrix.os }}-${{ matrix.arch }}-nx-${{ github.ref_name }}
           restore-keys: |
             ${{ matrix.os }}-${{ matrix.arch }}-nx-${{ github.ref_name }}-
+            ${{ matrix.os }}-${{ matrix.arch }}-nx-main-
             ${{ matrix.os }}-${{ matrix.arch }}-nx-
 
       - name: Install minikube (Linux)
