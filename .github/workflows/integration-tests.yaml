@@ -41,6 +41,7 @@ jobs:
       ELECTRON_CACHE: ${{ github.workspace }}/.cache/electron
       ELECTRON_BUILDER_CACHE: ${{ github.workspace }}/.cache/electron-builder
       PLAYWRIGHT_BROWSERS_PATH: ${{ github.workspace }}/.cache/playwright
+      NX_CACHE_DIR: ${{ github.workspace }}/.nx
 
     steps:
       - name: Checkout
@@ -125,7 +126,7 @@ jobs:
       - name: Use NX cache
         uses: actions/cache@v4
         with:
-          path: ${{ github.workspace }}/.nx
+          path: ${{ env.NX_CACHE_DIR }} 
           key: ${{ matrix.os }}-${{ matrix.arch }}-nx-${{ github.ref_name }}-${{ github.run_id }}
           restore-keys: |
             ${{ matrix.os }}-${{ matrix.arch }}-nx-${{ github.ref_name }}-

@@ -27,6 +27,9 @@ jobs:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
 
+    env:
+      NX_CACHE_DIR: ${{ github.workspace }}/.nx
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -51,7 +54,7 @@ jobs:
       - name: Use NX cache
         uses: actions/cache@v4
         with:
-          path: ${{ github.workspace }}/.nx
+          path: ${{ env.NX_CACHE_DIR }}
           key: ${{ matrix.os }}-${{ matrix.arch }}-nx-${{ github.ref_name }}-${{ github.run_id }}
           restore-keys: |
             ${{ matrix.os }}-${{ matrix.arch }}-nx-${{ github.ref_name }}-
