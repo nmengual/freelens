@@ -6,7 +6,7 @@
     "build": {
       "cache": true,
       "dependsOn": ["^build"],
-      "outputs": ["{projectRoot}/dist, src/static/build"]
+      "outputs": ["{projectRoot}/dist, {projectRoot}/static/build"]
     },
     "postbuild": {
       "dependsOn": []
