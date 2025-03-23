@@ -29,3 +29,6 @@ docs/extensions/api
 site/
 
 .linkable.json
+
+# Turbo
+.turbo

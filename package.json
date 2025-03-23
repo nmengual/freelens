@@ -10,24 +10,23 @@
     "email": "freelens@freelens.app"
   },
   "scripts": {
-    "build": "npx -y lerna run --stream build",
-    "build:app": "cd freelens && npm run build:app",
-    "rebuild": "npx -y lerna run --stream rebuild",
-    "clean": "npx -y lerna run clean --stream",
-    "clean:node_modules": "npx -y lerna clean -y && rimraf node_modules",
-    "dev": "cross-env NODE_ENV=development npx -y lerna run build --stream --skip-nx-cache",
-    "postdev": "npx -y lerna watch -- npx -y lerna run build --stream --include-dependents --scope \\$LERNA_PACKAGE_NAME",
+    "build": "turbo run build",
+    "build:app": "turbo run build:app --filter=freelens",
+    "rebuild": "turbo run rebuild",
+    "clean": "turbo run clean",
+    "clean:node_modules": "rimraf **/node_modules node_modules",
+    "dev": "cross-env NODE_ENV=development turbo run build --no-cache",
+    "start-dev": "turbo run start",
     "prestart-dev": "cd freelens && npm run build:tray-icons && npm run download:binaries",
-    "start-dev": "npx -y lerna run start",
     "postinstall": "linkable && npx -y patch-package@8",
-    "lint": "npx -y lerna run lint --stream --no-bail",
-    "lint:fix": "npx -y lerna run lint:fix --stream",
-    "test:unit": "npx -y lerna run --stream test:unit --no-bail",
-    "test:unit:updatesnapshot": "npx -y lerna run --stream test:unit --no-bail -- -u",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "test:unit": "turbo run test:unit",
+    "test:unit:updatesnapshot": "turbo run test:unit -- -u",
     "test:unit:watch": "jest --watch",
-    "test:integration": "npx -y lerna run --stream test:integration --no-bail",
-    "bump-version": "npx -y lerna version --no-git-tag-version --no-push",
-    "compute-versions": "npx -y lerna run --stream compute-versions"
+    "test:integration": "turbo run test:integration",
+    "bump-version": "npx changeset version",
+    "compute-versions": "turbo run compute-versions"
   },
   "overrides": {
     "underscore": "^1.13.7",
@@ -35,12 +34,15 @@
     "@types/react": "^17.0.84"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.26.2",
     "@ogre-tools/linkable": "^17.11.1",
     "cross-env": "^7.0.3",
     "npm": "10.9.2",
-    "rimraf": "^6.0.1"
+    "rimraf": "^6.0.1",
+    "turbo": "^2.4.4"
   },
   "engines": {
     "node": ">=20.0.0"
-  }
+  },
+  "packageManager": "npm@10.9.2"
 }
