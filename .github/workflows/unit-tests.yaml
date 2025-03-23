@@ -27,6 +27,9 @@ jobs:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
 
+    env:
+      NX_CACHE_DIR: ${{ github.workspace }}/.nx
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -47,6 +50,16 @@ jobs:
           key: ${{ matrix.os }}-${{ matrix.arch }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ matrix.os }}-${{ matrix.arch }}-node-
+
+      - name: Use NX cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.NX_CACHE_DIR }}
+          key: ${{ matrix.os }}-${{ matrix.arch }}-nx-${{ github.ref_name }}
+          restore-keys: |
+            ${{ matrix.os }}-${{ matrix.arch }}-nx-${{ github.ref_name }}-
+            ${{ matrix.os }}-${{ matrix.arch }}-nx-main-
+            ${{ matrix.os }}-${{ matrix.arch }}-nx-
 
       - name: Install dependencies (macOS)
         if: runner.os == 'macOS'

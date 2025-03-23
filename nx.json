@@ -1,0 +1,93 @@
+{
+  "targetDefaults": {
+    "clean": {
+      "dependsOn": []
+    },
+    "build": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/dist", "{projectRoot}/static/build"]
+    },
+    "postbuild": {
+      "dependsOn": []
+    },
+    "build:app": {
+      "dependsOn": []
+    },
+    "build:app:darwin": {
+      "dependsOn": []
+    },
+    "build:app:default": {
+      "dependsOn": []
+    },
+    "build:app:linux": {
+      "dependsOn": []
+    },
+    "build:app:win32": {
+      "dependsOn": []
+    },
+    "prebuild:app": {
+      "dependsOn": []
+    },
+    "prebuild:app:default": {
+      "dependsOn": []
+    },
+    "prebuild:app:win32": {
+      "dependsOn": []
+    },
+    "rebuild": {
+      "dependsOn": []
+    },
+    "start": {
+      "dependsOn": []
+    },
+    "dev-run": {
+      "dependsOn": []
+    },
+    "dev:main": {
+      "dependsOn": []
+    },
+    "dev:renderer": {
+      "dependsOn": []
+    },
+    "test:integration": {
+      "dependsOn": []
+    },
+    "build:tray-icons": {
+      "dependsOn": []
+    },
+    "download:binaries": {
+      "dependsOn": []
+    },
+    "postinstall": {
+      "dependsOn": []
+    },
+    "test:unit": {
+      "dependsOn": []
+    },
+    "lint": {
+      "dependsOn": []
+    },
+    "lint:fix": {
+      "dependsOn": []
+    },
+    "test:watch": {
+      "dependsOn": []
+    },
+    "ensure": {
+      "dependsOn": []
+    },
+    "generate": {
+      "dependsOn": []
+    },
+    "precompute-versions": {
+      "dependsOn": []
+    },
+    "compute-versions": {
+      "dependsOn": []
+    },
+    "dev": {
+      "dependsOn": []
+    }
+  }
+}

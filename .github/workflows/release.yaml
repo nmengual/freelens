@@ -22,6 +22,7 @@ jobs:
     env:
       ELECTRON_CACHE: ${{ github.workspace }}/.cache/electron
       ELECTRON_BUILDER_CACHE: ${{ github.workspace }}/.cache/electron-builder
+      NX_CACHE_DIR: ${{ github.workspace }}/.nx
 
     steps:
       - name: Checkout
@@ -156,6 +157,16 @@ jobs:
           max_attempts: 3
           retry_on: any
           command: npm ci
+
+      - name: Use NX cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.NX_CACHE_DIR }}
+          key: ${{ matrix.os }}-${{ matrix.arch }}-nx-${{ github.ref_name }}
+          restore-keys: |
+            ${{ matrix.os }}-${{ matrix.arch }}-nx-${{ github.ref_name }}-
+            ${{ matrix.os }}-${{ matrix.arch }}-nx-main-
+            ${{ matrix.os }}-${{ matrix.arch }}-nx-
 
       - name: Rebuild for arch (Linux arm64)
         if: runner.os == 'Linux' && matrix.arch == 'arm64'
